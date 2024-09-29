@@ -6,6 +6,9 @@ import Header from './Components/Header/Header'
 import Login from './Components/Login/Login';
 import { loadUser } from './Action/ActionUser';
 import Home from './Components/Home/Home';
+import Account from './Components/Account/Account';
+import Newpost from './Components/Newpost/Newpost';
+
 
 const App = () => {
  const dispatch = useDispatch();
@@ -21,6 +24,8 @@ const App = () => {
       }
     <Routes>
      <Route path='/' element={isAuthenticated?<Home/>:<Login/>}></Route>
+     <Route path='/account' element={isAuthenticated?<Account/>:<Login/>}></Route>
+     <Route path='/newPost' element={isAuthenticated?<Newpost/>:<Login/>}></Route>
     </Routes>
   </Router>
     </>

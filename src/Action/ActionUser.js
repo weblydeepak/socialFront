@@ -41,5 +41,75 @@ export const loadUser= () => async (dispatch)=>{
       })
     }
 }
+export const getFollowinPosts= () => async (dispatch)=>{
+  axios.defaults.withCredentials=true;
+    try{
+        dispatch({
+            type:"postOfFollowingRequest"
+        });
+        const {data}= await axios.get("http://localhost:7082/api/posts");
+        dispatch({
+            type:"postOfFollowingSuccess",
+            payload: data.posts,
+        });
+    }catch(err){
+      dispatch({
+        type:"postOfFollowingFailure",
+        payload:err.response.data.message
+      })
+    }
+}
+export const getAllUsers= () => async (dispatch)=>{
+  axios.defaults.withCredentials=true;
+    try{
+        dispatch({
+            type:"allUsersRequest"
+        });
+        const {data}= await axios.get("http://localhost:7082/api/Users");
+        dispatch({
+            type:"allUsersSuccess",
+            payload: data.users,
+        });
+    }catch(err){
+      dispatch({
+        type:"allUsersFailure",
+        payload:err.response.data.message
+      })
+    }
+}
+export const getMyPosts= () => async (dispatch)=>{
+  axios.defaults.withCredentials=true;
+    try{
+        dispatch({
+            type:"mypostRequest"
+        });
+        const {data}= await axios.get("http://localhost:7082/api/My/Posts");
+        dispatch({
+            type:"mypostSuccess",
+            payload: data.posts,
+        });
+    }catch(err){
+      dispatch({
+        type:"mypostFailure",
+        payload:err.response.data.message
+      })
+    }
+}
 
-
+export const logoutUser= (email, password) => async (dispatch)=>{
+  axios.defaults.withCredentials=true;
+    try{
+        dispatch({
+            type:"LogoutUserRequest"
+        });
+         await axios.get("http://localhost:7082/api/logOut",)
+        dispatch({
+            type:"LogoutUserSuccess",
+        });
+    }catch(err){
+      dispatch({
+        type:"LogoutUserFailure",
+        payload:err.response.data.message
+      })
+    }
+}
